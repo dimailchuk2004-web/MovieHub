@@ -1,9 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using MovieHub.Data;
 using MovieHub.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
+builder.Services.AddDbContextFactory<MovieHubContext>(o =>
+    o.UseSqlite("Data Source=moviehub.db"));
+builder.Services.AddQuickGridEntityFrameworkAdapter();
 
 var app = builder.Build();
 
